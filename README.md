@@ -1,1 +1,1 @@
-# Blogging_Application_Frontend_UsingReact
+# Blogging_Application_Frontend
