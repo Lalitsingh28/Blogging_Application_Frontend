@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
 import Link from 'next/link';
-import { AiOutlineClose, AiOutlineMenu ,SiBloglovin} from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
 const Header = () => {
     const [nav, setNav] = useState(false);
@@ -15,7 +15,7 @@ const Header = () => {
         <ul className='hidden md:flex'>
           <li className='p-4'><Link href='/'>Home</Link></li>
           <li className='p-4'><Link href='/blogs' >Blogs</Link></li>
-          <li className='p-4'><Link href='/signin' >Login</Link></li>
+          <li className='p-4'><Link href='/login' >Login</Link></li>
           <li className='p-4'><Link href='/signup' >Signup</Link></li>
           <li className='p-4'><Link href='/about' >About</Link></li>
         </ul>
