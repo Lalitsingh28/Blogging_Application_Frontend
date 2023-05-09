@@ -11,7 +11,7 @@ const Header = () => {
   
     return (
       <div className=' bg-purple-700 text-white flex justify-between items-center h-16 mx-auto px-4 '>
-        <h1 className='w-full text-xl md:text-3xl font-bold '>Bloggster</h1>
+        <h1 className='w-full text-xl md:text-3xl font-bold '><Link href= "/">Bloggster</Link></h1>
         <ul className='hidden md:flex'>
           <li className='p-4'><Link href='/'>Home</Link></li>
           <li className='p-4'><Link href='/blogs' >Blogs</Link></li>
