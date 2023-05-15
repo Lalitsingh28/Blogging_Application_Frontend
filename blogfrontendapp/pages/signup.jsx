@@ -1,18 +1,42 @@
 import React from 'react'
 import Link from 'next/link'
+import { useState } from 'react';
 export default function signup() {
+
+    const [data, setData] = useState({
+      name: "",
+      email: "",
+      password: "",
+      about: "",
+    });
+  
+    const [error, setError] = useState({
+      errors: {},
+      isError: false,
+    });
+
+    const handleChange = (event, property) => {
+      setData({ ...data, [property]: event.target.value });
+    };
+  
+  
+    const submitForm = (event) =>{
+        event.preventDefault();
+        console.log(data);
+    }
+  
   return (
     <>
     
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign up to new account
+              Create new account
             </h2>
           </div>
             {/* Name section */}
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form onSubmit={submitForm} className="space-y-6" >
             <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                   Enter Name
@@ -20,10 +44,10 @@ export default function signup() {
                 <div className="mt-2">
                   <input
                     id="name"
-                    name="name"
                     type="text"
-                    autoComplete="name"
                     placeholder='Enter Name Here'
+                    onChange={(e) => handleChange(e,"name")}
+                    value={data.name}
                     required
                     className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -38,10 +62,10 @@ export default function signup() {
                 <div className="mt-2">
                   <input
                     id="email"
-                    name="email"
                     type="email"
-                    autoComplete="email"
                     placeholder='Enter Email Here'
+                    onChange={(e) => handleChange(e,"email")}
+                    value={data.email}
                     required
                     className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -58,10 +82,10 @@ export default function signup() {
                 <div className="mt-2">
                   <input
                     id="password"
-                    name="password"
                     type="password"
-                    autoComplete="current-password"
                     placeholder='Enter Password Here'
+                    onChange={(e) => handleChange(e,"password")}
+                    value={data.password}
                     required
                     className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -76,9 +100,9 @@ export default function signup() {
                 <div className="mt-2">
                   <input
                     id="about"
-                    name="about"
                     type="text"
-                    autoComplete="about"
+                    onChange={(e) => handleChange(e,"about")}
+                    value={data.about}
                     placeholder="About"
                     required
                     className="h-28 block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -106,4 +130,4 @@ export default function signup() {
         </div>
       </>
   )
-}
+};
