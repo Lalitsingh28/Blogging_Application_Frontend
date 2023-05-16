@@ -22,7 +22,8 @@ export default function signup() {
   
     const submitForm = (event) =>{
         event.preventDefault();
-        console.log(data);
+        // console.log(data);
+        
     }
   
   return (
