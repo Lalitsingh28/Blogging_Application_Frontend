@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useState } from 'react';
+import { signUp } from '@/services/user-service';
 export default function signup() {
 
     const [data, setData] = useState({
@@ -23,7 +24,21 @@ export default function signup() {
     const submitForm = (event) =>{
         event.preventDefault();
         // console.log(data);
-        
+        signUp(data).then((resp) => {
+          console.log(resp);
+          setData({
+            name: "",
+            email: "",
+            password: "",
+            about: ""
+          })
+        }).catch((error) =>{
+          setError({
+            errors: error,
+            isError: true
+          })
+        })
+
     }
   
   return (
