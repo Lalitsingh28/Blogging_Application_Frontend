@@ -26,6 +26,7 @@ export default function signup() {
         // console.log(data);
         signUp(data).then((resp) => {
           console.log(resp);
+          alert("Sign up Successful");
           setData({
             name: "",
             email: "",
