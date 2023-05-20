@@ -1,6 +1,47 @@
 import Link from "next/link"
+import { useState } from "react"
+import { loginUser } from "@/services/user-service";
 
 export default function Login() {
+
+
+  const [loginDetail, setLoginDetail] = useState({
+    username: "",
+    password: ""
+  });
+
+  const [error, setError] = useState({
+    errors: {},
+    isError: false,
+  });
+
+  const handleChange = (event, field) => {
+    let actualValue = event.target.value;
+    setLoginDetail({
+      ...loginDetail,
+      [field]: actualValue,
+    });
+  };
+
+
+  const submitForm = (event) =>{
+      event.preventDefault();
+      // console.log(data);
+      loginUser(loginDetail).then((resp) => {
+        console.log(resp);
+        alert("Login In Successful");
+        setLoginDetail({
+          email: "",
+          password: ""
+        })
+      }).catch((error) =>{
+        setError({
+          errors: error,
+          isError: true
+        })
+      })
+  }
+
     return (
       <>
     
@@ -12,7 +53,7 @@ export default function Login() {
           </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form onSubmit={submitForm} className="space-y-6" >
               <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                   Email address
@@ -20,10 +61,11 @@ export default function Login() {
                 <div className="mt-2">
                   <input
                     id="email"
-                    name="email"
                     type="email"
                     autoComplete="email"
                     placeholder="Enter Email"
+                    onChange={(e) => handleChange(e,"email")}
+                    value={loginDetail.email}
                     required
                     className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -44,10 +86,11 @@ export default function Login() {
                 <div className="mt-2">
                   <input
                     id="password"
-                    name="password"
                     type="password"
                     autoComplete="current-password"
                     placeholder="Enter Password"
+                    onChange={(e) => handleChange(e,"password")}
+                    value={loginDetail.password}
                     required
                     className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
