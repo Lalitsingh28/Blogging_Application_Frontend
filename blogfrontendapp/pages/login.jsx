@@ -4,7 +4,6 @@ import { loginUser } from "@/services/user-service";
 
 export default function Login() {
 
-
   const [loginDetail, setLoginDetail] = useState({
     username: "",
     password: ""
