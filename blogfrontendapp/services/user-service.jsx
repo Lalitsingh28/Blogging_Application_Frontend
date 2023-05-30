@@ -9,4 +9,3 @@ export const loginUser = (loginDetail) => {
     .post("/user/login", loginDetail)
     .then((response) => response.data);
 };
-
